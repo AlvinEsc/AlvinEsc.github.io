@@ -50,15 +50,13 @@ const itemDetailModal = document.querySelector('#item-detail-modal');
 //     e.preventDefault();
 // };
 
-const itemDetailButtons =  document.querySelectorAll('.item-detail-button');
-
-itemDetailButtons.forEach((btn) => {
-    btn.onclick = (e) => {
-        itemDetailModal.style.display = 'flex';
-        e.preventDefault();
-    };
-});
-
+// const itemDetailButtons =  document.querySelectorAll('.item-detail-button');
+// itemDetailButtons.forEach((btn) => {
+//     btn.onclick = (e) => {
+//         itemDetailModal.style.display = 'flex';
+//         e.preventDefault();
+//     };
+// });
 
 //klik tombol close
 document.querySelector('.modal .close-icon').onclick = (e) => {
