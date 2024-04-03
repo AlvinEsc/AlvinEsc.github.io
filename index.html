@@ -23,7 +23,8 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- App -->
-    <script src="js/app.js"></script>
+    <script src="js/app.js" async></script>
+
 </head>
 <body>
     <!-- Navbar Start -->
@@ -76,6 +77,8 @@
 
             <div class="form-container" x-show="$store.cart.items.length">
                 <form action="" id="checkoutForm">
+                    <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
+                    <input type="hidden" name="total" x-model="$store.cart.total">
                     <h5>Customer Detail</h5>
 
                     <label for="name">
@@ -91,7 +94,7 @@
                         <input type="number" name="phone" id="phone" autocomplete="off">
                     </label>
 
-                    <button class="checkout-button" type="submit" id="checkout-button" value="checkout">Checkout</button>
+                    <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout">Checkout</button>
                 </form>
             </div>
         </div>
@@ -255,25 +258,27 @@
 
     <!-- Modal Box Item Detail Start -->
     <div class="modal" id="item-detail-modal">
-        <div class="modal-container">
-            <a href="#" class="close-icon"><i data-feather="x"></i></a>
-            <div class="modal-content">
-                <img src="img/produk/1.jpg" alt="Product 1">
-                <div class="product-content">
-                    <h3>Product 1</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo reiciendis exercitationem earum quo ex nisi illum quas enim veniam debitis magnam ipsam qui, perspiciatis ducimus?</p>
-                    <div class="product-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+        <!-- <template x-for="(item, index) in items" x-key="index"> -->
+            <div class="modal-container">
+                <a href="#" class="close-icon"><i data-feather="x"></i></a>
+                <div class="modal-content">
+                    <img src="img/produk/1.jpg" alt="Product 1">
+                    <div class="product-content">
+                        <h3></h3>
+                        <p></p>
+                        <div class="product-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="product-price"><span></span></div>
+                        <a href="#" @click.prevent="$store.cart.add(item)"><i class="fa-solid fa-cart-plus"></i><span>add to cart</span></a>
                     </div>
-                    <div class="product-price">IDR 30K <span>IDR 55K</span></div>
-                    <a href="#"><i data-feather="shopping-cart"></i> <span>add to cart</span></a>
                 </div>
             </div>
-        </div>
+        <!-- </template> -->
     </div>
     <!-- Modal Box Item Detail End -->
 
@@ -284,5 +289,9 @@
 
     <!-- My Javascript -->
     <script src="js/script.js"></script>
+    
+    <!-- Midtrans -->
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="SB-Mid-client-cZ_-1UGLrNuw6CaR"></script>
 </body>
 </html>
